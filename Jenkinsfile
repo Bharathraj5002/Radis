@@ -11,8 +11,7 @@ pipeline {
             steps {
                 git(
                     branch: 'main',
-                    url: 'https://github.com/Bharathraj5002/Radius.git',
-                    credentialsId: 'github-creds'
+                    url: 'https://github.com/Bharathraj5002/Radius.git'
                 )
             }
         }
