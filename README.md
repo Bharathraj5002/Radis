@@ -78,5 +78,4 @@ To clean up and destroy all AWS infrastructure created by Terraform, a separate 
 
 ***
 
-Would you like me to also add example **Terraform files** for creating the EC2 instance and security groups, so the README is fully self-contained?
 
