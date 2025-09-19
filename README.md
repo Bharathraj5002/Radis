@@ -1,5 +1,3 @@
-<img src="https://r2cdn.perplexity.ai/pplx-full-logo-primary-dark%402x.png" style="height:64px;margin-right:32px"/>
-
 # Radius Hub Application Deployment with Jenkins, Terraform, and AWS EC2
 
 This project demonstrates the end-to-end deployment of a **Radius Hub Application** on **AWS EC2** instances using **Jenkins (CI/CD pipeline)** and **Terraform (Infrastructure as Code)**. The application Docker images are hosted on **GitHub Container Registry (ghcr.io)**, and the deployment pipeline is fully automated through Jenkins.
