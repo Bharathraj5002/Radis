@@ -10,4 +10,4 @@ k8s/
 data/
 jenkins_home/
 .gitignore
-
+jenkins_home/

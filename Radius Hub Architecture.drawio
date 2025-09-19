@@ -1,0 +1,190 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36" version="28.2.3">
+  <diagram name="PKGPortal Architecture" id="pkgportal-arch">
+    <mxGraphModel dx="1713" dy="768" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="2336" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="Radius Hub - Complete Architecture &amp;amp; Workflow" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="647" y="80" width="600" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="cicd-section" value="CI/CD Pipeline (Jenkins)" style="swimlane;whiteSpace=wrap;html=1;fontSize=16;fontStyle=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+          <mxGeometry x="160" y="140" width="830" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="jenkins" value="Jenkins Master" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="cicd-section" vertex="1">
+          <mxGeometry x="20" y="40" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="jenkins-build" value="Build Pipeline" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="cicd-section" vertex="1">
+          <mxGeometry x="180" y="40" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="XSibBDz9VZaifGYWfs45-2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="cicd-section" source="jenkins-destroy" target="aws-deploy">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="jenkins-destroy" value="Terraform Destroy" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="cicd-section" vertex="1">
+          <mxGeometry x="500" y="120" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="terraform-init" value="Terraform Init" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="cicd-section" vertex="1">
+          <mxGeometry x="340" y="40" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="XSibBDz9VZaifGYWfs45-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="cicd-section" source="terraform-apply" target="aws-deploy">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="terraform-apply" value="Terraform Apply" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="cicd-section" vertex="1">
+          <mxGeometry x="500" y="40" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aws-deploy" value="AWS EC2 Deployment" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcc99;strokeColor=#ff9933;" parent="cicd-section" vertex="1">
+          <mxGeometry x="680" y="80" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="infra-section" value="Infrastructure (Terraform + AWS)" style="swimlane;whiteSpace=wrap;html=1;fontSize=16;fontStyle=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+          <mxGeometry x="160" y="380" width="830" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="aws-vpc" value="AWS VPC&#xa;(Default)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcc99;strokeColor=#ff9933;" parent="infra-section" vertex="1">
+          <mxGeometry x="60" y="50" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="security-group" value="Security Group&#xa;(Multiple Ports)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcc99;strokeColor=#ff9933;" parent="infra-section" vertex="1">
+          <mxGeometry x="180" y="50" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ec2-instance" value="EC2 Instance&#xa;(Ubuntu)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcc99;strokeColor=#ff9933;" parent="infra-section" vertex="1">
+          <mxGeometry x="300" y="50" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ssh-key" value="SSH Key Pair&#xa;(Generated)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcc99;strokeColor=#ff9933;" parent="infra-section" vertex="1">
+          <mxGeometry x="420" y="50" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ebs-volume" value="EBS Volume&#xa;(GP3)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcc99;strokeColor=#ff9933;" parent="infra-section" vertex="1">
+          <mxGeometry x="540" y="50" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="provisioners" value="Provisioners&#xa;(Docker Setup)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcc99;strokeColor=#ff9933;" parent="infra-section" vertex="1">
+          <mxGeometry x="660" y="50" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="docker-section" value="Radius Hub Services&amp;nbsp;" style="swimlane;whiteSpace=wrap;html=1;fontSize=16;fontStyle=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="160" y="600" width="1410" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="db-layer" value="Database Layer" style="swimlane;whiteSpace=wrap;html=1;fontSize=14;fontStyle=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="docker-section" vertex="1">
+          <mxGeometry x="507" y="180" width="320" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="postgres-db" value="PostgreSQL&#xa;(pkgportal-db)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="db-layer" vertex="1">
+          <mxGeometry x="20" y="40" width="80" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="redis" value="Redis&#xa;Cache" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="db-layer" vertex="1">
+          <mxGeometry x="120" y="40" width="80" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pg-vector" value="PG Vector&#xa;(AI DB)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="db-layer" vertex="1">
+          <mxGeometry x="220" y="40" width="80" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="app-layer" value="Application Services" style="swimlane;whiteSpace=wrap;html=1;fontSize=14;fontStyle=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="docker-section" vertex="1">
+          <mxGeometry x="290" y="40" width="520" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="api" value="PKGPortal&#xa;API" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="app-layer" vertex="1">
+          <mxGeometry x="20" y="40" width="80" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="databridge" value="Data&#xa;Bridge" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="app-layer" vertex="1">
+          <mxGeometry x="120" y="40" width="80" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="dataexporter" value="Data&#xa;Exporter" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="app-layer" vertex="1">
+          <mxGeometry x="220" y="40" width="80" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="notification" value="Notification&#xa;Service" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="app-layer" vertex="1">
+          <mxGeometry x="320" y="40" width="80" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ai-agent" value="AI Agent" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="app-layer" vertex="1">
+          <mxGeometry x="420" y="40" width="80" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="monitoring-layer" value="Monitoring and Observability" style="swimlane;whiteSpace=wrap;html=1;fontSize=14;fontStyle=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="docker-section" vertex="1">
+          <mxGeometry x="850" y="40" width="520" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="prometheus" value="Prometheus" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="monitoring-layer" vertex="1">
+          <mxGeometry x="20" y="40" width="80" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="grafana" value="Grafana" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="monitoring-layer" vertex="1">
+          <mxGeometry x="120" y="40" width="80" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="postgres-exporter" value="Postgres&#xa;Exporter" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="monitoring-layer" vertex="1">
+          <mxGeometry x="220" y="40" width="80" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="node-exporter" value="Node&#xa;Exporter" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="monitoring-layer" vertex="1">
+          <mxGeometry x="320" y="40" width="80" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="cadvisor" value="cAdvisor" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="monitoring-layer" vertex="1">
+          <mxGeometry x="420" y="40" width="80" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="db-mgmt" value="Database Management" style="swimlane;whiteSpace=wrap;html=1;fontSize=14;fontStyle=1;fillColor=#f0f0f0;strokeColor=#666666;" parent="docker-section" vertex="1">
+          <mxGeometry x="950" y="200" width="200" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="liquibase" value="Liquibase&#xa;DB Migration" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#666666;" parent="db-mgmt" vertex="1">
+          <mxGeometry x="47" y="30" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="XSibBDz9VZaifGYWfs45-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fillColor=#60a917;strokeColor=#2D7600;" edge="1" parent="docker-section" source="postgres-db" target="api">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="10" y="110" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="527" y="260" />
+              <mxPoint x="280" y="260" />
+              <mxPoint x="280" y="110" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XSibBDz9VZaifGYWfs45-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fillColor=#60a917;strokeColor=#2D7600;" edge="1" parent="docker-section" source="redis" target="databridge">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="627" y="260" />
+              <mxPoint x="620" y="260" />
+              <mxPoint x="620" y="170" />
+              <mxPoint x="400" y="170" />
+              <mxPoint x="400" y="110" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="auth-layer" value="Security and Authentication" style="swimlane;whiteSpace=wrap;html=1;fontSize=14;fontStyle=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="docker-section" vertex="1">
+          <mxGeometry x="30" y="40" width="220" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="keycloak" value="Keycloak&#xa;Identity Mgmt" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="auth-layer" vertex="1">
+          <mxGeometry x="20" y="40" width="80" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="nginx" value="Nginx&#xa;Web/LB" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="auth-layer" vertex="1">
+          <mxGeometry x="120" y="40" width="80" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="jenkins" target="jenkins-build" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="jenkins-build" target="terraform-init" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="terraform-init" target="terraform-apply" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="infra-section" target="docker-section" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="legend" value="Legend" style="swimlane;whiteSpace=wrap;html=1;fontSize=14;fontStyle=1;fillColor=#f0f0f0;strokeColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="1050" y="140" width="520" height="390" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-cicd" value="CI/CD Pipeline" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="legend" vertex="1">
+          <mxGeometry x="20" y="40" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-infra" value="Infrastructure" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="legend" vertex="1">
+          <mxGeometry x="140" y="40" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-docker" value="Docker Services" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="legend" vertex="1">
+          <mxGeometry x="260" y="40" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-db" value="Database Layer" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="legend" vertex="1">
+          <mxGeometry x="380" y="40" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-app" value="Application Layer" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="legend" vertex="1">
+          <mxGeometry x="70" y="80" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-monitoring" value="Monitoring" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="legend" vertex="1">
+          <mxGeometry x="190" y="80" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-security" value="Security/Auth" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="legend" vertex="1">
+          <mxGeometry x="310" y="80" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="features" value="&lt;font face=&quot;Times New Roman&quot; style=&quot;font-size: 20px;&quot;&gt;Key Features:&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1;" parent="legend" vertex="1">
+          <mxGeometry x="20" y="140" width="700" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="features-text" value="&lt;font face=&quot;Times New Roman&quot; style=&quot;font-size: 18px;&quot;&gt;• Multi-environment deployment (Docker Compose)&lt;br&gt;• Complete CI/CD pipeline with Jenkins&lt;br&gt;• Infrastructure as Code with Terraform&lt;br&gt;• Comprehensive monitoring with Prometheus + Grafana&lt;br&gt;• Microservices architecture with API Gateway&lt;br&gt;• Identity management with Keycloak&lt;br&gt;• AI capabilities with Vector database&lt;br&gt;• Database migration with Liquibase&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=10;" parent="legend" vertex="1">
+          <mxGeometry x="20" y="180" width="700" height="65" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

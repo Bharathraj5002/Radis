@@ -1,0 +1,17 @@
+FROM jenkins/jenkins:lts
+
+# Switch to root to install Terraform
+USER root
+
+# Install dependencies
+RUN apt-get update && apt-get install -y gnupg software-properties-common curl unzip
+
+# Add HashiCorp repo and install Terraform
+RUN curl -fsSL https://apt.releases.hashicorp.com/gpg | gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg \
+ && echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" \
+ | tee /etc/apt/sources.list.d/hashicorp.list \
+ && apt-get update && apt-get install -y terraform \
+ && terraform version
+
+# Switch back to jenkins user
+USER jenkins
